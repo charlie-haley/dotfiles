@@ -1,0 +1,12 @@
+/*
+
+!.Xresources
+!.gitignore
+
+!/.config
+/.config/*
+
+!.config/waybar/
+!.config/sway/
+!.config/wofi-wifi-menu/
+!.config/wofi/
