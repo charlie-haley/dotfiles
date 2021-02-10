@@ -14,7 +14,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term urxvt
+set $term termite
 
 set $browser chromium
 
@@ -123,9 +123,6 @@ font pango:DejaVu Sans Mono 12
     # Start browser
     bindsym $mod+Q exec $browser
 
-    # Start vscode
-    bindsym $mod+C exec code
-
     # Kill focused window
     bindsym $mod+Shift+q kill
 
@@ -142,11 +139,16 @@ font pango:DejaVu Sans Mono 12
 #    bindsym XF86AudioMute exec amixer -q -D pulse set Master toggle
 #    bindsym XF86AudioRaiseVolume exec amixer -q -D pulse set Master 5%+ unmute
 #    bindsym XF86AudioLowerVolume exec amixer -q -D pulse set Master 5%- unmute
-    bindsym XF86AudioRaiseVolume exec amixer -q set Master 2%+ unmute && amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print substr($2, 0, length($2)-1) }' > $SWAYSOCK.wob
-    bindsym XF86AudioLowerVolume exec amixer -q set Master 2%- unmute && amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print substr($2, 0, length($2)-1) }' > $SWAYSOCK.wob
-    bindsym XF86AudioMute exec (amixer get Master | grep off > /dev/null && amixer -q set Master unmute && amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print substr($2, 0, length($2)-1) }' > $SWAYSOCK.wob) || (amixer -q set Master mute && echo 0 > $SWAYSOCK.wob)
+    bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+ | sed -En 's/.*\[([0-9]+)%\].*/\1/p' | head -1 > $SWAYSOCK.wob
+    bindsym XF86AudioLowerVolume exec amixer sset Master 5%- | sed -En 's/.*\[([0-9]+)%\].*/\1/p' | head -1 > $SWAYSOCK.wob
+    bindsym XF86AudioMute exec amixer sset Master toggle | sed -En '/\[on\]/ s/.*\[([0-9]+)%\].*/\1/ p; /\[off\]/ s/.*/0/p' | head -1 > $SWAYSOCK.wob
     bindsym XF86MonBrightnessUp exec light -A 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
     bindsym XF86MonBrightnessDown exec light -U 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
+    bindsym XF86AudioPlay exec playerctl play-pause
+
+    # Clipboard bindings
+    #bindsym $mod+c exec wl-copy
+    #bindsym $mod+v exec wl-paste
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -217,13 +219,13 @@ font pango:DejaVu Sans Mono 12
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+#    bindsym $mod+b splith
+#    bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
     bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+    bindsym $mod+c layout toggle split
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -287,13 +289,11 @@ gaps inner 20
 # Read `man 5 sway-bar` for more information about this section.
 exec_always ~/.config/waybar/waybar.sh
 
-# Load Xresources
-exec xrdb /home/charlie/.Xresources
-
 #Init wob
-exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob -H 25 -b 2 -p 2 -o 0
+exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob --border-color '#fffdf6e3' --background-color '#fffdf6e3' --bar-color '#ff8f6254' -b 0 -H 40
 
 include /etc/sway/config.d/*
 
 ## Add polkit to sway
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
