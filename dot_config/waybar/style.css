@@ -1,0 +1,194 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: 'DejaVu Sans Mono', monospace;
+    font-size: 12px;
+    min-height: 0px;
+}
+
+window#waybar {
+    background-color: rgba(93, 64, 55, 1);
+    /* border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
+    color: #F8F8F2;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/*
+window#waybar.empty {
+    background-color: transparent;
+}
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+*/
+
+window#waybar.alacritty {
+    background-color: #3F3F3F;
+}
+#workspaces {
+    padding-right: 5px;
+}
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: #ffffff;
+    border-bottom: 3px solid transparent;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+#workspaces button:hover {
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: inherit;
+    border-bottom: 3px solid #ffffff;
+}
+
+#workspaces button.focused {
+    background-color: rgb(143, 98, 84);
+    border-bottom: 3px solid rgb(143, 98, 84);
+}
+
+#workspaces button.urgent {
+    background-color: #FF5555;
+}
+
+#mode {
+    background-color: #FF5555;
+    border-bottom: 3px solid #FF5555;
+}
+
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#mpd,
+#custom-updates {
+    padding: 0px;
+    margin: 0 4px;
+    color: #f8f8f2;
+}
+
+#clock {
+    font-weight: bold;
+    /*background-color: #64727D;*/
+}
+
+#battery {
+    /*background-color: #ffffff;*/
+    /*color: #000000;*/
+}
+
+#battery.charging {
+    /*background-color: #26A65B;*/
+    color: #50fa7b;
+}
+
+#battery.warning:not(.charging) {
+    /*background-color: #;*/
+    color: #b45bcf;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ff5555;
+        color: #282a36;
+    }
+}
+
+#battery.critical:not(.charging) {
+    /*background-color: #;*/
+    color: #ff5555;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+#cpu {
+    /*background-color: #2ecc71;*/
+    /*color: #000000;*/
+}
+
+#memory {
+    /*background-color: #9b59b6;*/
+}
+
+#network {
+    /*background-color: #2980b9;*/
+}
+
+#P.disconnected {
+    /*background-color: #f53c3c;*/
+}
+
+#pulseaudio {
+    /*background-color: #f1c40f;*/
+    /*color: #000000;*/
+}
+
+#pulseaudio.muted {
+    /*background-color: #90b1b1;*/
+    /*color: #2a5c45;*/
+}
+
+#custom-media {
+    background-color: #66cc99;
+    color: #2a5c45;
+    min-width: 100px;
+}
+
+#custom-media.custom-spotify {
+    background-color: #66cc99;
+}
+
+#custom-media.custom-vlc {
+    background-color: #ffa000;
+}
+
+#idle_inhibitor {
+    /*background-color: #2d3436;*/
+}
+
+#idle_inhibitor.activated {
+    background-color: #b45bcf;
+    color: #f8f8f2;
+}
+
+#custom-waybar-mpris{
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+}
+
+#custom-updates {
+    color: #ff5555;
+}
+
+/*hack to hide modules on second monitor*/
+window.DP-3 #custom-waybar-mpris,
+window.DP-3 #network,
+window.DP-3 #pulseaudio,
+window.DP-3 #custom-wlsunset,
+window.DP-3 #battery
+{
+    background-color: transparent;
+    color: transparent;
+}
