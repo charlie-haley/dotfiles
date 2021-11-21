@@ -1,0 +1,33 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+PS1='[\u@\h \W]\$ '
+
+sway() {
+  command sway --my-next-gpu-wont-be-nvidia
+}
+
+docker() {
+ if [[ $@ == "ps" ]]; then
+  command docker ps -a --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}"
+ else
+  command docker "$@"
+ fi
+} 
+
+export PATH=/home/charlie/.local/bin:/home/charlie/.cargo/bin:$PATH
+
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+gpg-connect-agent /bye
+export GPG_TTY=$(tty)
+echo UPDATESTARTUPTTY | gpg-connect-agent
+clear
+
+# Set default editor
+export EDITOR=nano
