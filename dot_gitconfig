@@ -1,0 +1,14 @@
+[commit]
+	gpgsign = true
+[tag]
+	gpgSign = true
+[user]
+	signingkey = 7F30678CF4053CEDDCB852EB7AC0F35EF1924EEA
+	name = Charlie Haley
+	{{- if (eq .personal "true") }}
+	email = charlie.haley@traefik.io
+	{{- else }}
+	email = charlie.haley@hotmail.com
+	{{- end }}
+[core]
+  editor = nano
