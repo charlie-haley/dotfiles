@@ -1,0 +1,9 @@
+[gpg]
+  recipient = "7F30678CF4053CEDDCB852EB7AC0F35EF1924EEA"
+
+[edit]
+  command = "code"
+  args = ["--wait"]
+
+[data]
+  personal = false
