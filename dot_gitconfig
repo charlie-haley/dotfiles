@@ -11,4 +11,6 @@
 	email = charlie.haley@traefik.io
 	{{- end }}
 [core]
-  editor = nano
+	editor = nano
+[pager]
+	branch = false
