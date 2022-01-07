@@ -1,0 +1,85 @@
+plugins=(
+  git
+  kubectl
+  kubectx
+)
+
+export ZSH_THEME="spaceship"
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+
+source $HOME/.oh-my-zsh/oh-my-zsh.sh
+
+## Alias
+{{- if (eq .wsl false) }}
+sway() {
+  # lol
+  command sway --my-next-gpu-wont-be-nvidia
+}
+{{- end }}
+
+docker() {
+ if [[ $@ == "ps" ]]; then
+  command docker ps -a --format "table {{ "{{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}" }}"
+ else
+  command docker "$@"
+ fi
+}
+
+{{- if (eq .wsl true) }}
+# WSL2
+# SSH Socket
+# Removing Linux SSH socket and replacing it by link to wsl2-ssh-pageant socket
+export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
+ss -a | grep -q $SSH_AUTH_SOCK
+if [ $? -ne 0 ]; then
+  rm -f $SSH_AUTH_SOCK
+  setsid nohup socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:$HOME/.ssh/wsl2-ssh-pageant.exe &>/dev/null &
+fi
+
+# GPG
+export GPG_AGENT_SOCK="$HOME/.gnupg/S.gpg-agent"
+if ! ss -a | grep -q "$GPG_AGENT_SOCK"; then
+  rm -rf "$GPG_AGENT_SOCK"
+  wsl2_ssh_pageant_bin="$HOME/.ssh/wsl2-ssh-pageant.exe"
+  if test -x "$wsl2_ssh_pageant_bin"; then
+    (setsid nohup socat UNIX-LISTEN:"$GPG_AGENT_SOCK,fork" EXEC:"$wsl2_ssh_pageant_bin --gpgConfigBasepath C\:/Users/charl/AppData/Local/gnupg --gpg S.gpg-agent" >/dev/null 2>&1 &)
+  else
+    echo >&2 "WARNING: $wsl2_ssh_pageant_bin is not executable."
+  fi
+  unset wsl2_ssh_pageant_bin
+fi
+{{- else }}
+## GPG Agent
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+gpg-connect-agent /bye
+export GPG_TTY=$(tty)
+echo UPDATESTARTUPTTY | gpg-connect-agent
+clear
+{{- end }}
+
+{{- if (eq .wsl false) }}
+# Env vars
+export GDK_BACKEND=wayland
+export MOZ_ENABLE_WAYLAND=1
+{{- end }}
+export GOPATH=$HOME/golang
+export GOROOT=/usr/local/go
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
+
+## Set default editor
+export EDITOR=nano
+
+
+# Theme config
+SPACESHIP_PROMPT_SEPARATE_LINE=false
+SPACESHIP_PROMPT_PREFIXES_SHOW=false
+SPACESHIP_PROMPT_ADD_NEWLINE=false
+SPACESHIP_GCLOUD_SHOW=false
+
+. <(flux completion zsh)
