@@ -4,6 +4,13 @@ plugins=(
   kubectx
 )
 
+export ZSH_THEME="spaceship"
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+
 source $ZSH/oh-my-zsh.sh
 
 ## Alias
