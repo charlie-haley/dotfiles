@@ -38,7 +38,7 @@ set $text-color          #ffffff
 set $inactive-text-color #9da3ad
 set $urgent-bg-color     #E53935
 
-set $indicator           #00ff00
+set $indicator           #ede5d1
 set $separator           #757575
 
 # class                 border              background         text                 indicator
