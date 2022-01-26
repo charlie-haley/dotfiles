@@ -78,9 +78,11 @@ export GOPATH=$HOME/golang
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 
+# unset, because reasons
+unset GOROOT
+
 ## Set default editor
 export EDITOR=nano
-
 
 # Theme config
 SPACESHIP_PROMPT_SEPARATE_LINE=false
@@ -89,3 +91,6 @@ SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_GCLOUD_SHOW=false
 
 . <(flux completion zsh)
+
+# nvm
+-source /usr/share/nvm/init-nvm.sh
