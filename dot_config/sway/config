@@ -18,6 +18,7 @@ output * bg /home/charlie/.config/sway/wall.jpg fill
 output eDP-1 scale 1.5
 output DP-3 scale 1 transform 270 pos 0 1080
 output DP-2 scale 1 pos 1080 1080
+output DP-2 mode 2560x1440@165Hz
 
 input 1118:2479:Microsoft_Surface_045E:09AF_Touchpad {
     tap enabled
