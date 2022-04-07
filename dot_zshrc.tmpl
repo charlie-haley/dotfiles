@@ -60,11 +60,8 @@ if ! ss -a | grep -q "$GPG_AGENT_SOCK"; then
 fi
 {{- else }}
 ## GPG Agent
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent
-gpg-connect-agent /bye
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/yubikey-agent/yubikey-agent.sock"
 export GPG_TTY=$(tty)
-echo UPDATESTARTUPTTY | gpg-connect-agent
 clear
 {{- end }}
 
@@ -76,6 +73,10 @@ export MOZ_ENABLE_WAYLAND=1
 export GOPATH=$HOME/golang
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
+export AWS_PROFILE=default
+export AWS_ACCESS_KEY_ID=$(aws configure get default.aws_access_key_id)
+export AWS_SECRET_ACCESS_KEY=$(aws configure get default.aws_secret_access_key)
+export AWS_SESSION_TOKEN=$(aws configure get default.aws_session_token)
 
 # unset, because reasons
 unset GOROOT
@@ -93,3 +94,10 @@ SPACESHIP_GCLOUD_SHOW=false
 
 # nvm
 source /usr/share/nvm/init-nvm.sh
+
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.profile
+echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.profile
+echo 'eval "$(pyenv init --path)"' >> ~/.profile
+echo 'if [ -n "$PS1" -a -n "$BASH_VERSION" ]; then source ~/.bashrc; fi' >> ~/.profile
+
+echo 'eval "$(pyenv init -)"' >> ~/.bashrc
