@@ -84,7 +84,7 @@
         },
         "format": " {icon} ",
         "format-charging": "",
-        "format-plugged": "", //{capacity}% 
+        "format-plugged": "", //{capacity}%
         "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
