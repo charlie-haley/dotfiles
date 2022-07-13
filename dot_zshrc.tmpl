@@ -89,6 +89,7 @@ SPACESHIP_PROMPT_SEPARATE_LINE=false
 SPACESHIP_PROMPT_PREFIXES_SHOW=false
 SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_GCLOUD_SHOW=false
+SPACESHIP_DOCKER_SHOW=false
 
 . <(flux completion zsh)
 
@@ -101,3 +102,4 @@ echo 'eval "$(pyenv init --path)"' >> ~/.profile
 echo 'if [ -n "$PS1" -a -n "$BASH_VERSION" ]; then source ~/.bashrc; fi' >> ~/.profile
 
 echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+autoload -U compinit; compinit
