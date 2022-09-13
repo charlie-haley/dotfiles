@@ -60,6 +60,15 @@ export GPG_TTY=$(tty)
 clear
 {{- end }}
 
+{{- if (eq .machine "desktop") }}
+export XDG_SESSION_TYPE=wayland
+export XDG_CURRENT_DESKTOP=sway
+export GBM_BACKEND=nvidia-drm
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+export WLR_NO_HARDWARE_CURSORS=1
+export WLR_DRM_NO_ATOMIC=1
+export WLR_RENDERER=vulkan
+{{- end }}
 {{- if (eq .wsl false) }}
 # Env vars
 export GDK_BACKEND=wayland

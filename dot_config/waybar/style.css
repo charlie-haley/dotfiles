@@ -18,15 +18,6 @@ window#waybar.hidden {
     opacity: 0.2;
 }
 
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
-
 window#waybar.alacritty {
     background-color: #3F3F3F;
 }
@@ -83,16 +74,9 @@ window#waybar.alacritty {
 
 #clock {
     font-weight: bold;
-    /*background-color: #64727D;*/
-}
-
-#battery {
-    /*background-color: #ffffff;*/
-    /*color: #000000;*/
 }
 
 #battery.charging {
-    /*background-color: #26A65B;*/
     color: #50fa7b;
 }
 
@@ -109,7 +93,6 @@ window#waybar.alacritty {
 }
 
 #battery.critical:not(.charging) {
-    /*background-color: #;*/
     color: #ff5555;
     animation-name: blink;
     animation-duration: 0.5s;
@@ -122,49 +105,10 @@ label:focus {
     background-color: #000000;
 }
 
-#cpu {
-    /*background-color: #2ecc71;*/
-    /*color: #000000;*/
-}
-
-#memory {
-    /*background-color: #9b59b6;*/
-}
-
-#network {
-    /*background-color: #2980b9;*/
-}
-
-#P.disconnected {
-    /*background-color: #f53c3c;*/
-}
-
-#pulseaudio {
-    /*background-color: #f1c40f;*/
-    /*color: #000000;*/
-}
-
-#pulseaudio.muted {
-    /*background-color: #90b1b1;*/
-    /*color: #2a5c45;*/
-}
-
 #custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
-    min-width: 100px;
-}
-
-#custom-media.custom-spotify {
-    background-color: #66cc99;
-}
-
-#custom-media.custom-vlc {
-    background-color: #ffa000;
-}
-
-#idle_inhibitor {
-    /*background-color: #2d3436;*/
+    background-color: #e7e1ce;
+    color: #4E342E;
+    min-width: 250px;
 }
 
 #idle_inhibitor.activated {
@@ -188,6 +132,7 @@ window.DP-3 #network,
 window.DP-3 #pulseaudio,
 window.DP-3 #custom-wlsunset,
 window.DP-3 #battery
+window.DP-3 #custom-media
 {
     background-color: transparent;
     color: transparent;
