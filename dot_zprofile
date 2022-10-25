@@ -1,5 +1,5 @@
-#
-# ~/.zprofile
-#
+# proton
+gnome-keyring-daemon --start
+nm-applet &
 
 [[ -f ~/.zshrc ]] && . ~/.zshrc

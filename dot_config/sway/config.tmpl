@@ -31,7 +31,12 @@ input 1118:2479:Microsoft_Surface_045E:09AF_Touchpad {
     scroll_factor 0.3
 }
 {{- end }}
-
+{{- if (eq .machine "desktop") }}
+input 1133:16518:Logitech_G703_LS {
+    accel_profile flat
+    pointer_accel 0
+}
+{{- end }}
 ### ------------- Theme -------------
 set $bg-color            #404552
 
