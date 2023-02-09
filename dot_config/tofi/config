@@ -1,0 +1,17 @@
+font = DejaVu Sans Mono
+font-size = 9
+
+border-color = #4E342E
+border-width = 1
+outline-width = 0
+
+background-color = #F0E9D7
+text-color = #4E342E
+
+selection-background = #4E342E
+selection-color = #F0E9D7
+
+prompt-text = "➜ "
+num-results = 9
+width = 320
+height = 180

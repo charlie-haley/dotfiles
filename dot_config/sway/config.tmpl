@@ -3,7 +3,7 @@ set $mod Mod4
 set $term alacritty
 set $browser firefox
 # application launcher
-set $menu wofi --show drun swaymsg exec --
+set $menu tofi-drun | xargs swaymsg exec --
 
 ### ------------- Output -------------
 output * bg /home/charlie/.config/sway/wall.jpg fill
@@ -86,7 +86,7 @@ bindsym $mod+Shift+s exec slurp | grim -g - - | wl-copy
 bindsym $mod+d exec $menu
 
 # Load shutdown/lock menu
-bindsym $mod+l exec sh ~/.config/wofi/wofi-power-menu.sh
+bindsym $mod+l exec sh ~/.config/tofi/tofi-power-menu.sh
 
 # Media key bindings
 bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+ | sed -En 's/.*\[([0-9]+)%\].*/\1/p' | head -1 > $SWAYSOCK.wob

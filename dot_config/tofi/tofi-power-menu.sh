@@ -1,6 +1,6 @@
 #!/bin/sh
 LIST="Lock\nSleep\nReboot\nShutdown"
-SELECTED=$(printf $LIST | wofi -i --height 105 --width 250 -d)
+SELECTED=$(printf $LIST | tofi --height 105 --width 250)
 
 
 case $SELECTED in
@@ -13,4 +13,3 @@ case $SELECTED in
     "Shutdown" )
         exec systemctl poweroff -i ;;
 esac
-
