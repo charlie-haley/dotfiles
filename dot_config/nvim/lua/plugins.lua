@@ -38,14 +38,32 @@ return packer.startup(function(use)
   use 'nvim-lua/plenary.nvim' -- Useful lua functions used ny lots of plugins
   use 'nvim-tree/nvim-web-devicons'
 
-  -- Session management
-  use {
-    'jedrzejboczar/possession.nvim',
-    requires = { 'nvim-lua/plenary.nvim' },
+  use {'ms-jpq/coq_nvim', branch = 'coq'}
+  use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
+  use {'ms-jpq/coq.thirdparty', branch = '3p'}
+
+  use ({
+    'nvim-telescope/telescope.nvim', tag = '0.1.x',
+    requires = { {'nvim-lua/plenary.nvim'} },
     config = function()
-      require('config.possession')
+      require('config.telescope')
     end,
-  }
+  })
+
+  use({
+    "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("config.treesitter")
+    end,
+  })
+
+  -- Session management
+  use({
+    "olimorris/persisted.nvim",
+    config = function()
+      require('config.persisted')
+    end,
+  })
 
   -- Plugin for filesystem tree
   use {
