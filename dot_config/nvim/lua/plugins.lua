@@ -42,11 +42,38 @@ return packer.startup(function(use)
   use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
   use {'ms-jpq/coq.thirdparty', branch = '3p'}
 
-  use ({
-    'nvim-telescope/telescope.nvim', tag = '0.1.x',
-    requires = { {'nvim-lua/plenary.nvim'} },
+  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+
+  use {
+    'shaunsingh/solarized.nvim',
+    config = function()
+      require('config.theme')
+    end,
+  }
+
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = 'nvim-tree/nvim-web-devicons',
+    config = function()
+      require('config.lualine')
+    end,
+  }
+
+  use {
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.x',
+    requires = 'nvim-lua/plenary.nvim',
     config = function()
       require('config.telescope')
+    end,
+  }
+
+  use ({
+    'akinsho/bufferline.nvim',
+    tag = 'v3.*', 
+    requires = 'nvim-tree/nvim-web-devicons',
+    config = function()
+      require('config.bufferline')
     end,
   })
 
