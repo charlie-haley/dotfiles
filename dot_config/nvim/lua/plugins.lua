@@ -42,18 +42,30 @@ return packer.startup(function(use)
   use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
   use {'ms-jpq/coq.thirdparty', branch = '3p'}
 
-  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+  use { 
+    'sindrets/diffview.nvim', 
+    requires = 'nvim-lua/plenary.nvim',
+    config = function()
+      require('config.diffview')
+    end,
+  }
 
   use {
     'shaunsingh/solarized.nvim',
+    event = "VimEnter",
+    requires = 'nvim-tree/nvim-web-devicons',
     config = function()
-      require('config.theme')
+      require('config.solarized')
     end,
   }
 
   use {
     'nvim-lualine/lualine.nvim',
-    requires = 'nvim-tree/nvim-web-devicons',
+    event = "VimEnter",
+    requires = { 
+      'nvim-tree/nvim-web-devicons',
+      'shaunsingh/solarized.nvim'
+    },
     config = function()
       require('config.lualine')
     end,
