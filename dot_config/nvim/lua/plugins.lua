@@ -33,45 +33,26 @@ packer.init({
 
 -- Install your plugins here
 return packer.startup(function(use)
-  use 'wbthomason/packer.nvim' -- Have packer manage itself
-  use 'nvim-lua/popup.nvim' -- An implementation of the Popup API from vim in Neovim
-  use 'nvim-lua/plenary.nvim' -- Useful lua functions used ny lots of plugins
+  use 'wbthomason/packer.nvim'
+  use 'nvim-lua/popup.nvim'
+  use 'nvim-lua/plenary.nvim'
   use 'nvim-tree/nvim-web-devicons'
-
-  use {
-    'ms-jpq/coq_nvim',
-    branch = 'coq',
-    config = function()
-      require('config.coq')
-    end,
-  }
-
-  use {
-    'ms-jpq/coq.artifacts',
-    branch = 'artifacts',
-    after = 'coq_nvim',
-  }
-
-  use {
-    'ms-jpq/coq.thirdparty',
-    branch = '3p',
-    after = 'coq_nvim',
-  }
-
-  use {
-    'shaunsingh/solarized.nvim',
-    event = "VimEnter",
-    requires = 'nvim-tree/nvim-web-devicons',
-    config = function()
-      require('config.solarized')
-    end,
-  }
 
   use { 
     'sindrets/diffview.nvim', 
     requires = 'nvim-lua/plenary.nvim',
     config = function()
       require('config.diffview')
+    end,
+  }
+
+  -- Theme
+  use {
+    'shaunsingh/solarized.nvim',
+    event = "VimEnter",
+    requires = 'nvim-tree/nvim-web-devicons',
+    config = function()
+      require('config.solarized')
     end,
   }
 
@@ -116,6 +97,33 @@ return packer.startup(function(use)
     "fatih/vim-go",
 		run = ":GoUpdateBinaries"
 	})
+
+  use {
+    'ms-jpq/coq_nvim',
+    branch = 'coq',
+    config = function()
+      require('config.coq')
+    end,
+  }
+
+  use {
+    'ms-jpq/coq.artifacts',
+    branch = 'artifacts',
+    after = 'coq_nvim',
+  }
+
+  use {
+    'ms-jpq/coq.thirdparty',
+    branch = '3p',
+    after = 'coq_nvim',
+  }
+
+  use {
+    'neovim/nvim-lspconfig',
+    config = function()
+      require('config.lsp')
+    end,
+  }
 
   -- Session management
   use({
