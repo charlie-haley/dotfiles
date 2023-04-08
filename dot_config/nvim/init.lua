@@ -12,8 +12,7 @@ vim.bo.softtabstop = 2
 
 vim.wo.number = true
 
--- Global Keybinds
-vim.keymap.set('n', '<leader>tc', '<cmd>tabc<CR>', {})
+require("keybinds")
 
+require("manager")
 require("plugins")
-
