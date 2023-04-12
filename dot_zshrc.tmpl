@@ -14,7 +14,7 @@ alias ls='ls --color=auto'
 source $HOME/.oh-my-zsh/oh-my-zsh.sh
 
 ## Alias
-{{- if (eq .wsl false) }}
+{{- if and (eq .wsl false) (eq .machine "desktop") }}
 sway() {
   # lol
   command sway --unsupported-gpu
@@ -60,6 +60,7 @@ export GPG_TTY=$(tty)
 clear
 {{- end }}
 
+# Env vars
 {{- if (eq .machine "desktop") }}
 export XDG_SESSION_TYPE=wayland
 export XDG_CURRENT_DESKTOP=sway
@@ -69,8 +70,10 @@ export WLR_NO_HARDWARE_CURSORS=1
 export WLR_DRM_NO_ATOMIC=1
 export WLR_RENDERER=vulkan
 {{- end }}
+{{- if (eq .machine "x1") }}
+export XDG_CURRENT_DESKTOP=Unity
+{{- end }}
 {{- if (eq .wsl false) }}
-# Env vars
 export GDK_BACKEND=wayland
 export MOZ_ENABLE_WAYLAND=1
 {{- end }}
@@ -100,8 +103,10 @@ SPACESHIP_DOCKER_SHOW=false
 
 . <(flux completion zsh)
 
+{{- if not (eq .machine "x1") }}
 # nvm
 source /usr/share/nvm/init-nvm.sh
+{{- end }}
 
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.profile
 echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.profile

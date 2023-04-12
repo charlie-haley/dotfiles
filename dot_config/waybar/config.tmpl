@@ -3,8 +3,8 @@
     "height": 30,
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
-    {{- if (eq .machine "sb3") }}
-    "modules-right": [ "custom/wlsunset", "pulseaudio", "network", "battery", "custom/waybar-mpris", "clock"],
+    {{- if (eq .machine "x1") }}
+    "modules-right": [ "custom/wlsunset", "pulseaudio", "network", "battery", "custom/waybar-mpris", "tray", "clock"],
     {{- end }}
     {{- if (eq .machine "desktop") }}
     "modules-right": [ "custom/wlsunset", "pulseaudio", "network", "custom/media", "tray", "clock"],

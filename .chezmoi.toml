@@ -9,4 +9,5 @@ encryption = "gpg"
 [data]
   personal = false
   wsl      = false
-  machine  = "desktop" # available types "sb3", "sl3", "desktop"
+  machine  = "desktop" # available types "sb3", "sl3", "x1", "desktop"
+

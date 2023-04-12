@@ -26,6 +26,15 @@ output DP-2 scale 1 pos 1080 1080
 output DP-2 mode 2560x1440@165Hz
 {{- end }}
 
+{{- if (eq .machine "x1") }}
+output eDP-1 scale 2
+output eDP-1 mode 3840x2400@60hz
+
+output DP-3 scale 1 transform 270 pos 0 1080
+output HDMI-A-1 scale 1 pos 1080 1080
+output HDMI-A-1 mode 2560x1440@165Hz
+{{- end}}
+
 ### ------------- Input -------------
 {{- if (eq .machine "sl3") }}
 # Set keyboard layout to UK when using built-in keyboard on SL3
@@ -176,6 +185,6 @@ include /etc/sway/config.d/*
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 ## If booted with lid shut, ensure display is disabled
-{{- if (eq .machine "sb3") }}
+{{- if or (eq .machine "sb3") (eq .machine "x1") }}
 exec_always cat /proc/acpi/button/lid/LID/state | awk '{print $2}' | grep -q 'closed' && swaymsg output eDP-1 disable
 {{- end }}
