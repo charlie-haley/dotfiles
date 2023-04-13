@@ -1,18 +1,24 @@
 [commit]
-	gpgsign = true
+  gpgsign = true
 [tag]
-	gpgSign = true
+  gpgSign = true
 [user]
-	signingkey = 7F30678CF4053CEDDCB852EB7AC0F35EF1924EEA
-	name = Charlie Haley
-	email = charlie.haley@hotmail.com
+{{- if eq .personal true }}
+  signingkey = 7F30678CF4053CEDDCB852EB7AC0F35EF1924EEA
+  name = Charlie Haley
+  email = charlie.haley@hotmail.com
+{{else}}
+  name = Charlie Haley
+  email = charlie.haley@justeattakeaway.com
+{{ end }}
 [core]
-	editor = nano
+  editor = nano
 [pager]
-	branch = false
+  branch = false
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+  insteadOf = https://github.com/
 [push]
-	autoSetupRemote = true
+  autoSetupRemote = true
+

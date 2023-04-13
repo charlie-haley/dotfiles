@@ -188,3 +188,7 @@ exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 {{- if or (eq .machine "sb3") (eq .machine "x1") }}
 exec_always cat /proc/acpi/button/lid/LID/state | awk '{print $2}' | grep -q 'closed' && swaymsg output eDP-1 disable
 {{- end }}
+
+# https://github.com/swaywm/sway/wiki#gtk-applications-take-20-seconds-to-start
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+

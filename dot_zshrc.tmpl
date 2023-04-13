@@ -71,7 +71,7 @@ export WLR_DRM_NO_ATOMIC=1
 export WLR_RENDERER=vulkan
 {{- end }}
 {{- if (eq .machine "x1") }}
-export XDG_CURRENT_DESKTOP=Unity
+export XDG_CURRENT_DESKTOP=sway
 {{- end }}
 {{- if (eq .wsl false) }}
 export GDK_BACKEND=wayland
