@@ -8,6 +8,13 @@ require("lazy").setup({
   {'ms-jpq/coq.thirdparty', branch = '3p'},
 
   { 
+    'neovim/nvim-lspconfig',
+    config = function()
+      require('config.lsp')
+    end,
+  },
+  
+  { 
     'sindrets/diffview.nvim', 
     dependencies = {'nvim-lua/plenary.nvim'},
     config = function()

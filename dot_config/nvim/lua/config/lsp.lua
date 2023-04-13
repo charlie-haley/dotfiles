@@ -5,6 +5,7 @@ local util = require('lspconfig/util')
 lspconfig.pyright.setup {}
 lspconfig.tsserver.setup {}
 lspconfig.rust_analyzer.setup {}
+lspconfig.csharp_ls.setup {}
 lspconfig.gopls.setup {
   cmd = {"gopls", "serve"},
   filetypes = {"go", "gomod"},
