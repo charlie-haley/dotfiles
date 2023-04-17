@@ -4,7 +4,7 @@
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
     {{- if (eq .machine "x1") }}
-    "modules-right": [ "custom/wlsunset", "pulseaudio", "network", "battery", "custom/waybar-mpris", "tray", "clock"],
+    "modules-right": [ "custom/wlsunset", "pulseaudio", "network", "battery", "custom/media", "tray", "clock"],
     {{- end }}
     {{- if (eq .machine "desktop") }}
     "modules-right": [ "custom/wlsunset", "pulseaudio", "network", "custom/media", "tray", "clock"],

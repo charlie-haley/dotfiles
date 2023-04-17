@@ -45,7 +45,7 @@ require("lazy").setup({
 
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.x',
+    tag = "0.1.1",
     dependencies = 'nvim-lua/plenary.nvim',
     config = function()
       require('config.telescope')
@@ -54,7 +54,7 @@ require("lazy").setup({
 
   {
     'akinsho/bufferline.nvim',
-    tag = 'v3.*',
+    tag = "v3.7.0",
     dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
       require('config.bufferline')

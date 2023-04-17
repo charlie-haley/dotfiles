@@ -115,4 +115,8 @@ echo 'eval "$(pyenv init --path)"' >> ~/.profile
 echo 'if [ -n "$PS1" -a -n "$BASH_VERSION" ]; then source ~/.bashrc; fi' >> ~/.profile
 
 echo 'eval "$(pyenv init -)"' >> ~/.bashrc
-autoload -U compinit; compinit
+autoload -Uz compinit; compinit
+
+# add Pulumi to the PATH
+export PATH=$PATH:$HOME/.pulumi/bin
+
