@@ -5,6 +5,16 @@ local util = require('lspconfig/util')
 lspconfig.pyright.setup {}
 lspconfig.tsserver.setup {}
 lspconfig.rust_analyzer.setup {}
+lspconfig.yamlls.setup {
+  settings = {
+    yaml = {
+      schemaStore = {
+        url = "https://www.schemastore.org/api/json/catalog.json",
+        enable = true,
+      },
+    },
+  },
+}
 lspconfig.csharp_ls.setup {}
 lspconfig.gopls.setup {
   cmd = {"gopls", "serve"},
