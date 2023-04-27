@@ -3,7 +3,13 @@ require("lazy").setup({
   {'nvim-lua/plenary.nvim'},
   {'nvim-tree/nvim-web-devicons'},
 
-  {'ms-jpq/coq_nvim', branch = 'coq'},
+  {
+    'ms-jpq/coq_nvim', 
+    branch = 'coq',
+    init = function()
+      require('config.coq')
+    end,
+  },
   {'ms-jpq/coq.artifacts', branch = 'artifacts'},
   {'ms-jpq/coq.thirdparty', branch = '3p'},
 
@@ -68,7 +74,20 @@ require("lazy").setup({
     end,
   },
 
-  -- Session management
+  {
+    "numToStr/Comment.nvim",
+    config = function()
+      require("config.comment")
+    end,
+  },
+
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    config = function()
+      require("config.nullls")
+    end,
+  },
+
   {
     "olimorris/persisted.nvim",
     config = function()
@@ -76,7 +95,6 @@ require("lazy").setup({
     end,
   },
 
-  -- Plugin for filesystem tree
   {
     'nvim-tree/nvim-tree.lua',
     dependencies = {
