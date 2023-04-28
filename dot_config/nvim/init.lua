@@ -7,6 +7,7 @@ vim.opt.expandtab = true
 vim.opt.titlestring = 'nvim | %f %r %m'
 vim.opt.title = true
 vim.opt.titlelen = 120
+vim.opt.clipboard = "unnamedplus"
 
 vim.bo.softtabstop = 2
 
