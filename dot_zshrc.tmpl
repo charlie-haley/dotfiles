@@ -76,6 +76,7 @@ export XDG_CURRENT_DESKTOP=sway
 export GDK_BACKEND=wayland
 export MOZ_ENABLE_WAYLAND=1
 {{- end }}
+export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 export GOPATH=$HOME/golang
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
