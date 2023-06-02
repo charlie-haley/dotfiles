@@ -104,5 +104,9 @@ require("lazy").setup({
       require('config.nvim-tree')
     end,
   },
+
+  {
+    'OmniSharp/omnisharp-vim',
+  },
 })
 
