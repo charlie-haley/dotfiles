@@ -30,6 +30,7 @@ lspconfig.gopls.setup {
   },
 }
 
+autocmd BufWritePre * lua vim.lsp.buf.format()
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions

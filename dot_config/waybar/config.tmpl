@@ -6,6 +6,9 @@
     {{- if (eq .machine "x1") }}
     "modules-right": [ "custom/wlsunset", "pulseaudio", "network", "battery", "custom/media", "tray", "clock"],
     {{- end }}
+    {{- if (eq .machine "sl3") }}
+    "modules-right": [ "custom/wlsunset", "pulseaudio", "network", "battery", "custom/media", "tray", "clock"],
+    {{- end }}
     {{- if (eq .machine "desktop") }}
     "modules-right": [ "custom/wlsunset", "pulseaudio", "network", "custom/media", "tray", "clock"],
     {{- end }}
