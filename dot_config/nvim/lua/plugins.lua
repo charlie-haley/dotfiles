@@ -108,5 +108,9 @@ require("lazy").setup({
   {
     'OmniSharp/omnisharp-vim',
   },
+
+  {
+    'towolf/vim-helm',
+  },
 })
 

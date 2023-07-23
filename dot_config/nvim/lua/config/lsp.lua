@@ -1,4 +1,5 @@
 -- Setup language servers.
+local configs = require('lspconfig.configs')
 local lspconfig = require('lspconfig')
 local util = require('lspconfig/util')
 
@@ -30,7 +31,26 @@ lspconfig.gopls.setup {
   },
 }
 
-autocmd BufWritePre * lua vim.lsp.buf.format()
+-- Configure Helm Language Server.
+if not configs.helm_ls then
+  configs.helm_ls = {
+    default_config = {
+      cmd = {"helm_ls", "serve"},
+      filetypes = {'helm'},
+      root_dir = function(fname)
+        return util.root_pattern('Chart.yaml')(fname)
+      end,
+    },
+  }
+end
+
+lspconfig.helm_ls.setup {
+  filetypes = {"helm"},
+  cmd = {"helm_ls", "serve"},
+}
+
+-- Format on save.
+vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -69,4 +89,3 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end, opts)
   end,
 })
-
