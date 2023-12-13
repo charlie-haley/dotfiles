@@ -68,6 +68,7 @@ export GBM_BACKEND=nvidia-drm
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
 export WLR_NO_HARDWARE_CURSORS=1
 export WLR_DRM_NO_ATOMIC=1
+export WLR_RENDERER=vulkan
 {{- end }}
 {{- if (eq .machine "x1") }}
 export XDG_CURRENT_DESKTOP=sway
@@ -88,6 +89,12 @@ export AWS_PROFILE=default
 export AWS_ACCESS_KEY_ID=$(aws configure get default.aws_access_key_id)
 export AWS_SECRET_ACCESS_KEY=$(aws configure get default.aws_secret_access_key)
 export AWS_SESSION_TOKEN=$(aws configure get default.aws_session_token)
+
+# GPG ssh
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+gpg-connect-agent updatestartuptty /bye > /dev/null
 
 # unset, because reasons
 unset GOROOT

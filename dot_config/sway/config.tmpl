@@ -14,9 +14,9 @@ output eDP-1 mode 2256x1504@60hz
 {{- end }}
 
 {{- if (eq .machine "desktop") }}
-output DP-3 scale 1 transform 270 pos 0 1080
-output DP-1 scale 1 pos 1080 1080
-output DP-1 mode 2560x1440@165Hz
+output DP-1 scale 1 pos 1080 0
+output DP-1 mode 2560x1440@165.080hz
+output DP-3 scale 1 transform 270 pos 0 0
 {{- end }}
 
 {{- if (eq .machine "sb3") }}
