@@ -110,5 +110,13 @@ require("lazy").setup({
   {
     'towolf/vim-helm',
   },
+
+  {
+    "rest-nvim/rest.nvim",
+    dependencies = 'nvim-lua/plenary.nvim',
+    config = function()
+      require('config.rest')
+    end,
+  },
 })
 

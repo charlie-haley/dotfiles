@@ -45,6 +45,7 @@ export XDG_CURRENT_DESKTOP=sway
 {{- if (eq .wsl false) }}
 export GDK_BACKEND=wayland
 export MOZ_ENABLE_WAYLAND=1
+export _JAVA_AWT_WM_NONREPARENTING=1
 {{- end }}
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 export GOPATH=$HOME/golang
@@ -52,12 +53,14 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/.dotnet/tools
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:/usr/local/go/bin
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-export AWS_PROFILE=default
-export AWS_ACCESS_KEY_ID=$(aws configure get default.aws_access_key_id)
-export AWS_SECRET_ACCESS_KEY=$(aws configure get default.aws_secret_access_key)
-export AWS_SESSION_TOKEN=$(aws configure get default.aws_session_token)
+
+alias aws-profile='export AWS_PROFILE=$(sed -n "s/\[profile \(.*\)\]/\1/gp" ~/.aws/config | fzf) &&
+  eval "$(aws configure export-credentials --profile $AWS_PROFILE --format env)" &&
+  export AWS_REGION=$(aws configure --profile $AWS_PROFILE get region)'
 
 # GPG ssh
 export GPG_TTY="$(tty)"
@@ -69,12 +72,13 @@ gpg-connect-agent updatestartuptty /bye > /dev/null
 unset GOROOT
 
 ## Set default editor
-export EDITOR=nano
+export EDITOR=nvim
 
 # Theme config
-SPACESHIP_PROMPT_SEPARATE_LINE=false
 SPACESHIP_PROMPT_PREFIXES_SHOW=false
 SPACESHIP_PROMPT_ADD_NEWLINE=false
+SPACESHIP_PROMPT_SEPARATE_LINE=false
+SPACESHIP_RPROMPT_ADD_NEWLINE=true
 SPACESHIP_GCLOUD_SHOW=false
 SPACESHIP_DOCKER_SHOW=false
 
