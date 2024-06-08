@@ -29,14 +29,14 @@ require("lazy").setup({
   },
 
   {
-    'shaunsingh/solarized.nvim',
-    dependencies = 'nvim-tree/nvim-web-devicons',
+    'maxmx03/solarized.nvim',
+    lazy = false,
     priority = 1000,
     config = function()
       require('config.solarized')
     end,
   },
-
+  
   {
     'nvim-lualine/lualine.nvim',
     event = "VimEnter",
