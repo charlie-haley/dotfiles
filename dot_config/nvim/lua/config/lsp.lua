@@ -31,22 +31,18 @@ lspconfig.gopls.setup {
   },
 }
 
--- Configure Helm Language Server.
-if not configs.helm_ls then
-  configs.helm_ls = {
-    default_config = {
-      cmd = {"helm_ls", "serve"},
-      filetypes = {'helm'},
-      root_dir = function(fname)
-        return util.root_pattern('Chart.yaml')(fname)
-      end,
-    },
-  }
-end
+lspconfig.ts_ls.setup{}
+lspconfig.svelte.setup{}
 
+-- Configure Helm Language Server.
 lspconfig.helm_ls.setup {
-  filetypes = {"helm"},
-  cmd = {"helm_ls", "serve"},
+  settings = {
+    ['helm-ls'] = {
+      yamlls = {
+        path = "yaml-language-server",
+      }
+    }
+  }
 }
 
 -- Format on save.

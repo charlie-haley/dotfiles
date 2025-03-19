@@ -132,12 +132,12 @@
         "tooltip": false
     },
     "custom/media": {
-        "format": "{icon} {}",
+        "format": "{0} {1}",
         "escape": true,
         "return-type": "json",
         "max-length": 40,
         "on-click": "playerctl play-pause",
         "on-click-right": "playerctl stop",
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null",
+        "exec": "$HOME/.config/waybar/playerctl.sh 2> /dev/null",
     }
 }

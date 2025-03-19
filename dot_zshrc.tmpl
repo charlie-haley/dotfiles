@@ -33,7 +33,7 @@ docker() {
 export GBM_BACKEND=nvidia-drm
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
 export WLR_NO_HARDWARE_CURSORS=1
-export WLR_DRM_NO_ATOMIC=1
+export WLR_DRM_NO_ATOMIC=true
 export WLR_RENDERER=vulkan
 {{- end }}
 {{- if (eq .wsl false) }}
@@ -92,3 +92,10 @@ autoload -Uz compinit; compinit
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
 
+# pnpm
+export PNPM_HOME="/home/charlie/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
